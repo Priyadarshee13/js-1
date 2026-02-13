@@ -35,28 +35,40 @@ if(e.target.id === 'white') {
 ## Project 2:
 
 ```javascript
-const form=document.querySelector('form');
+const form = document.querySelector('form');
 
-form.addEventListener('submit',function(e){
-e.preventDefault();
+form.addEventListener('submit', function (e) {
+  e.preventDefault();
 
+  const height = parseInt(document.querySelector('#height').value);
+  const weight = parseInt(document.querySelector('#weight').value);
+  const results = document.querySelector('#results');
+  const weightguide = document.querySelector('#weight-guide');
 
+  if (isNaN(height) || height <= 0) {
+    results.innerHTML = `Please give a valid height`;
+    return;
+  }
 
-const height=parseInt(document.querySelector('#height').value);
-const weight=parseInt(document.querySelector('#weight').value);
-const results=document.querySelector('#results');
+  if (isNaN(weight) || weight <= 0) {
+    results.innerHTML = `Please give a valid weight`;
+    return;
+  }
 
-if(height === '' || height < 0 || isNaN(height) ){
-  results.innerHTML=`Pls Give a valid height bro ${height}`
-}
-if( weight === '' || weight < 0 || isNaN(weight) ){
-  results.innerHTML=`Pls Give a valid weight bro ${weight}`
-}
-else{ 
-  const bmi = (weight/((height *height)/10000)).toFixed(2);
-  results.innerHTML=`${bmi}`
-}
-})
+  const bmi = (weight / ((height * height) / 10000)).toFixed(2);
+  results.innerHTML = `Your BMI is ${bmi}`;
+
+  if (bmi < 18.6) {
+    weightguide.innerHTML = `<span>${bmi} is Underweight!</span>`;
+  } 
+  else if (bmi >= 18.6 && bmi < 25) {
+    weightguide.innerHTML = `<span>${bmi} is Normal :) </span>`;
+  } 
+  else {
+    weightguide.innerHTML = `<span>${bmi} is Overweight!</span>`;
+  }
+});
+
 
 
 ```
