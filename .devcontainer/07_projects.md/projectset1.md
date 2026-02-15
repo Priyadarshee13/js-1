@@ -187,3 +187,32 @@ function newgame(){
 
 }
 ```
+## Project 6
+
+```javascript
+const randomno=function(){
+  const hex= "123456789ABCDEF";
+  let color='#';
+  for(i=0;i<6;i++){
+    color += hex[Math.floor(Math.random()*16)];
+
+  }
+  return color;
+
+}
+let chngcolor;
+function bgcolor()
+{
+  document.body.style.backgroundColor=randomno();
+}
+
+document.querySelector('#start').addEventListener('click',function(){
+  if(!chngcolor){
+  chngcolor=setInterval(bgcolor,1000);}
+});
+document.querySelector('#stop').addEventListener('click',function(){
+ clearInterval(chngcolor);
+ chngcolor=null
+});
+
+```
